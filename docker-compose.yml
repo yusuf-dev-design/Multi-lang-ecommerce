@@ -1,0 +1,45 @@
+
+
+services:
+  user-service:
+    build: ./Services/user-service
+    ports:
+      - "3001:3001"
+
+  product-service:
+    build: ./Services/product-service
+    ports:
+      - "8000:8000"
+
+  order-service:
+    build: ./Services/order-service
+    ports:
+      - "8080:8080"
+
+  inventory-service:
+    build: ./Services/inventory-service
+    ports:
+      - "8081:8081"
+
+  notification-service:
+    build: ./Services/notification-service
+    ports:
+      - "3002:3002"
+
+  api-gateway:
+    build: ./Services/api-gateway
+    ports:
+      - "8002:8002"
+    depends_on:
+      - user-service
+      - product-service
+      - order-service
+      - inventory-service
+      - notification-service
+
+  react-app:
+    build: ./Frontend/react-app
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_GATEWAY=http://localhost:8002

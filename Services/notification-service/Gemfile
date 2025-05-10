@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gem 'rails', '~> 7.0.8'
+gem 'pg', '~> 1.4' # PostgreSQL
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'twilio-ruby' # For SMS
